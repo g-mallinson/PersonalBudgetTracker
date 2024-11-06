@@ -1,12 +1,12 @@
--- CREATE DATABASE budget_db
---     WITH
---     OWNER = postgres
---     ENCODING = 'UTF8'
---     LOCALE_PROVIDER = 'libc'
---     CONNECTION LIMIT = -1
---     IS_TEMPLATE = False;
+CREATE DATABASE budget_db
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LOCALE_PROVIDER = 'libc'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
 
--- \c budget_db
+\c budget_db
 
 CREATE TYPE category AS ENUM ('salary', 'food', 'transport', 'entertainment', 'utilities', 'other');
 CREATE TYPE transaction_type AS ENUM ('income', 'expense');
