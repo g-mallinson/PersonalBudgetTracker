@@ -4,3 +4,6 @@
 # VSCode
 .vscode/
 .github/
+
+# Python
+*__pycache__/

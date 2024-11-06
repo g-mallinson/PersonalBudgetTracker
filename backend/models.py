@@ -6,7 +6,7 @@ Classes:
 """
 
 from sqlalchemy import Column, Integer, String, Date, Numeric
-from database import Base
+from backend.database import Base
 
 class Transaction(Base):
     """
