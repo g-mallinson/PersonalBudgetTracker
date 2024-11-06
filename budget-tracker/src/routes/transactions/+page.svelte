@@ -4,8 +4,9 @@
 
     let transactions = [];
 
-    /** Fetch transactions from the API on component mount and store them 
-     * in the transactions variable 
+    /**
+     * Fetch transactions from the API on component mount and store them 
+     * in the transactions variable.
      */
     onMount(async () => {
         const response = await axios.get('http://localhost:8000/transactions');
@@ -22,9 +23,11 @@
     let category = '';
     let amount = '';
     let transaction_type = '';
-    
+
+    /**
+     * Send a POST request to the API to add a new transaction.
+     */
     const addTransaction = async () => {
-        // Send a POST request to the API to add a new transaction
         await axios.post('http://localhost:8000/transactions/', {
             date,
             description,
@@ -32,11 +35,12 @@
             amount: parseFloat(amount),
             transaction_type
         });
+
         // Refresh the transactions array by fetching the updated list from API
         const response = await axios.get('http://localhost:8000/transactions/');
         transactions = response.data;
         // Clear the form input values
-        date = new Date().toISOString().split('T')[0];
+        date = new Date().toISOString().split('T')[0]; // Reset to current date
         description = '';
         category = '';
         amount = '';
@@ -44,104 +48,71 @@
     };
 
     /**
-     * Format the amount as a currency string with 2 decimal places
+     * Formats a number as a currency string.
      * 
-     * @param {number} amount - The amount to format
-     * @returns {string} - The formatted currency string
+     * @param {number} value - The number to format.
+     * @returns {string} The formatted currency string.
      */
-    function formatCurrency(amount: number): string {
-        return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    function formatCurrency(value: number): string {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
     }
 </script>
 
-<h1 class="text-2xl font-bold mb-4">Transactions</h1>
+<h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Transactions</h1>
 
-<table class="min-w-full bg-white border border-gray-300">
-    <thead>
-        <tr>
-            <th class="py-2 px-4 border-b">Date</th>
-            <th class="py-2 px-4 border-b">Description</th>
-            <th class="py-2 px-4 border-b">Category</th>
-            <th class="py-2 px-4 border-b text-right">Amount</th>
-            <th class="py-2 px-4 border-b">Transaction Type</th>
-        </tr>
-    </thead>
-    <!-- Loop through transactions array and display each transaction in a row -->
-    <tbody>
-        {#each transactions as transaction}
-            <tr>
-                <td>{transaction.date}</td>
-                <td>{transaction.description}</td>
-                <td>{transaction.category}</td>
-                <td class="amount-col">{formatCurrency(transaction.amount)}</td>
-                <td>{transaction.transaction_type}</td>
-            </tr>
-        {/each}
-    </tbody>
-</table>
+<div class="flex justify-center">
+    <div class="w-auto max-w-4xl px-4">
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
+                <thead class="bg-indigo-600 text-white">
+                    <tr>
+                        <th class="py-3 px-4">Date</th>
+                        <th class="py-3 px-4">Description</th>
+                        <th class="py-3 px-4">Category</th>
+                        <th class="py-3 px-4 text-right">Amount</th>
+                        <th class="py-3 px-4">Transaction Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {#each transactions as transaction}
+                        <tr class="even:bg-gray-100 odd:bg-white">
+                            <td class="py-3 px-4 border-b">{transaction.date}</td>
+                            <td class="py-3 px-4 border-b">{transaction.description}</td>
+                            <td class="py-3 px-4 border-b">{transaction.category}</td>
+                            <td class="py-3 px-4 border-b text-right">{formatCurrency(transaction.amount)}</td>
+                            <td class="py-3 px-4 border-b">{transaction.transaction_type}</td>
+                        </tr>
+                    {/each}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<h2> Add Transaction </h2>
-
-<form on:submit|preventDefault={addTransaction}>
-    <label>
-        Date:
-        <input type="date" bind:value={date} required>
+<h2 class="text-3xl font-bold mt-12 mb-6 text-center text-gray-800">Add Transaction</h2>
+<form on:submit|preventDefault={addTransaction} class="max-w-lg mx-auto space-y-6 bg-white p-8 rounded-lg shadow-lg">
+    <label class="block">
+        <span class="text-gray-700">Date:</span>
+        <input type="date" bind:value={date} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
-    <label>
-        Description:
-        <input type="text" bind:value={description} required>
+    <label class="block">
+        <span class="text-gray-700">Description:</span>
+        <input type="text" bind:value={description} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
-    <label>
-        Category:
-        <select bind:value={category} required>
-            <option value="salary">Salary</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="food">Food</option>
-            <option value="transport">Transport</option>
-            <option value="utilities">Utilities</option>
-            <option value="other">Other</option>
+    <label class="block">
+        <span class="text-gray-700">Category:</span>
+        <input type="text" bind:value={category} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
-    <label>
-        Amount:
-        <input type="number" step="0.01" bind:value={amount} required>
+    <label class="block">
+        <span class="text-gray-700">Amount:</span>
+        <input type="number" step="0.01" bind:value={amount} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
-    <label>
-        Transaction Type:
-        <select bind:value={transaction_type} required>
+    <label class="block">
+        <span class="text-gray-700">Transaction Type:</span>
+        <select bind:value={transaction_type} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
     </label>
-    <button type="submit">Add Transaction</button>
+    <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-black rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-indigo-300">Add Transaction</button>
 </form>
-
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 8px;
-    }
-
-    .amount-col {
-        text-align: right;
-    }
-    
-</style>
