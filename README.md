@@ -70,7 +70,7 @@ From the `root` directory, run the following command to start the backend server
   ```
 
 - **Access the Frontend**:
-  Open your browser and navigate to `http://localhost:3000`.
+  Open your browser and navigate to `http://localhost:5173/transactions`.
 
 ### Notes
 
