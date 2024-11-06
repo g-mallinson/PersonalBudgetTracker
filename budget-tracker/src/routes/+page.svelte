@@ -7,7 +7,7 @@
     /* Fetch transactions from the API on component mount and store them 
      * in the transactions variable */
     onMount(async () => {
-        const response = await axios.get('http://localhost:3000/api/transactions');
+        const response = await axios.get('http://localhost:8000/transactions');
         transactions = response.data;
     });
 
@@ -78,7 +78,13 @@
     </label>
     <label>
         Category:
-        <input type="text" bind:value={category} required>
+        <select bind:value={category} required>
+            <option value="salary">Salary</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="utilities">Utilities</option>
+            <option value="other">Other</option>
     </label>
     <label>
         Amount:
