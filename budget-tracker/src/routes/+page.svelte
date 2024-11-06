@@ -4,11 +4,16 @@
 
     let transactions = [];
 
-    /* Fetch transactions from the API on component mount and store them 
-     * in the transactions variable */
+    /** Fetch transactions from the API on component mount and store them 
+     * in the transactions variable 
+     */
     onMount(async () => {
         const response = await axios.get('http://localhost:8000/transactions');
         transactions = response.data;
+
+        // Set the date input value to today's date by default
+        const today = new Date();
+        date = today.toISOString().split('T')[0];
     });
 
     // Define variables to store form input values
@@ -31,12 +36,22 @@
         const response = await axios.get('http://localhost:8000/transactions/');
         transactions = response.data;
         // Clear the form input values
-        date = '';
+        date = new Date().toISOString().split('T')[0];
         description = '';
         category = '';
         amount = '';
         transaction_type = '';
     };
+
+    /**
+     * Format the amount as a currency string with 2 decimal places
+     * 
+     * @param {number} amount - The amount to format
+     * @returns {string} - The formatted currency string
+     */
+    function formatCurrency(amount: number): string {
+        return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    }
 </script>
 
 <h1>Transactions</h1>
@@ -47,7 +62,7 @@
             <th>Date</th>
             <th>Description</th>
             <th>Category</th>
-            <th>Amount</th>
+            <th class="amount-col">Amount</th>
             <th>Transaction Type</th>
         </tr>
     </thead>
@@ -58,7 +73,7 @@
                 <td>{transaction.date}</td>
                 <td>{transaction.description}</td>
                 <td>{transaction.category}</td>
-                <td>{transaction.amount}</td>
+                <td class="amount-col">{formatCurrency(transaction.amount)}</td>
                 <td>{transaction.transaction_type}</td>
             </tr>
         {/each}
@@ -124,4 +139,9 @@
         display: block;
         margin-bottom: 8px;
     }
+
+    .amount-col {
+        text-align: right;
+    }
+    
 </style>
