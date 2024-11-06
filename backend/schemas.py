@@ -1,5 +1,5 @@
 """
-This module defines the Pydantic models for the Personal Budget Tracker 
+Defines the Pydantic models for the Personal Budget Tracker 
 application.
 
 Classes:

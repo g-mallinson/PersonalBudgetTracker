@@ -1,5 +1,5 @@
 """
-This module sets up the database connection and session for the Personal 
+Sets up the database connection and session for the Personal 
 Budget Tracker application.
 
 Modules:

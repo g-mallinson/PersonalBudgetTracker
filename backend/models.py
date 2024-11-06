@@ -1,6 +1,6 @@
 
 """
-This module defines the Transaction model for the Personal Budget Tracker 
+Defines the Transaction model for the Personal Budget Tracker 
 Classes:
     Transaction: A SQLAlchemy ORM model representing a financial transaction.
 """
