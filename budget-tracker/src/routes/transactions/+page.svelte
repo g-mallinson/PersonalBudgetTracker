@@ -63,8 +63,8 @@
 <div class="flex justify-center">
     <div class="w-auto max-w-4xl px-4">
         <div class="overflow-x-auto">
-            <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
-                <thead class="bg-indigo-600 text-white">
+            <table class="min-w-full bg-white shadow-lg rounded-lg">
+                <thead class="bg-indigo-600 text-black">
                     <tr>
                         <th class="py-3 px-4">Date</th>
                         <th class="py-3 px-4">Description</th>
@@ -90,29 +90,34 @@
 </div>
 
 <h2 class="text-3xl font-bold mt-12 mb-6 text-center text-gray-800">Add Transaction</h2>
-<form on:submit|preventDefault={addTransaction} class="max-w-lg mx-auto space-y-6 bg-white p-8 rounded-lg shadow-lg">
+<form on:submit|preventDefault={addTransaction} class="max-w-2x1 mx-auto space-y-6 bg-white p-8 rounded-lg shadow-lg">
     <label class="block">
         <span class="text-gray-700">Date:</span>
-        <input type="date" bind:value={date} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
+        <input type="date" bind:value={date} required class="mt-1 block w-auto border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
     <label class="block">
         <span class="text-gray-700">Description:</span>
-        <input type="text" bind:value={description} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
+        <input type="text" bind:value={description} required class="mt-1 block w-auto border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
     <label class="block">
         <span class="text-gray-700">Category:</span>
-        <input type="text" bind:value={category} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
+        <select bind:value={category} required class="mt-1 block w-auto border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
+            <option value="food">Food</option>
+            <option value="rent">Rent</option>
+            <option value="utilities">Utilities</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="other">Other</option>
     </label>
     <label class="block">
         <span class="text-gray-700">Amount:</span>
-        <input type="number" step="0.01" bind:value={amount} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
+        <input type="number" step="0.01" bind:value={amount} required class="mt-1 block w-auto border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
     </label>
     <label class="block">
         <span class="text-gray-700">Transaction Type:</span>
-        <select bind:value={transaction_type} required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
+        <select bind:value={transaction_type} required class="mt-1 block w-auto border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-300">
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
     </label>
-    <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-black rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-indigo-300">Add Transaction</button>
+    <button type="submit" class="w-auto py-2 px-4 bg-indigo-600 text-black rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-indigo-300">Add Transaction</button>
 </form>
