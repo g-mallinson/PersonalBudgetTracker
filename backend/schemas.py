@@ -26,11 +26,13 @@ class TransactionBase(BaseModel):
         category (str): The category under which the transaction falls 
             (e.g., groceries, utilities).
         amount (float): The monetary amount of the transaction.
+        transaction_type (str): The type of transaction (income, expense).
     """
     date: date
     description: str
     category: str
     amount: float
+    transaction_type: str
         
 class TransactionCreate(TransactionBase):
     """

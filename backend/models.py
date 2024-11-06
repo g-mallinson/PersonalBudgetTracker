@@ -20,6 +20,7 @@ class Transaction(Base):
         description (str): The description of the transaction.
         category (str): The category of the transaction.
         amount (float): The amount of the transaction.
+        transaction_type (str): The type of the transaction (income, expense).
     """
     
     __tablename__ = "transactions"
@@ -29,3 +30,4 @@ class Transaction(Base):
     description = Column(String, nullable=False)
     category = Column(String, nullable=True)
     amount = Column(Numeric(10, 2), nullable=False)
+    transaction_type = Column(String, nullable=False)

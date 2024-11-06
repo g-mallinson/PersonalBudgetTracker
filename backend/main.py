@@ -71,4 +71,3 @@ def create_transaction(transaction: schemas.TransactionCreate,
     db.commit()  # Commit the transaction to the database
     db.refresh(db_transaction)  
     return db_transaction
-

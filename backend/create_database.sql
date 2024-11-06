@@ -15,12 +15,12 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     amount DECIMAL(10, 2) NOT NULL,
     category category NOT NULL,
-    type transaction_type NOT NULL,
+    transaction_type transaction_type NOT NULL,
     description TEXT,
     date DATE NOT NULL
 );
 
-INSERT INTO transactions (amount, category, type, description, date)
+INSERT INTO transactions (amount, category, transaction_type, description, date)
 VALUES (1000, 'salary', 'income', 'First salary', '2021-01-01'),
     (100, 'food', 'expense', 'Lunch', '2021-01-01'),
     (50, 'transport', 'expense', 'Bus ticket', '2021-01-01'),
