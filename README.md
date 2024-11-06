@@ -64,6 +64,7 @@
 ### Usage
 
 - **Run the Backend**:
+From the `root` directory, run the following command to start the backend server:
   ```sh
   uvicorn backend.main:app --reload
   ```
