@@ -56,7 +56,7 @@
 
 <h1 class="text-2xl font-bold mb-4">Transactions</h1>
 
-<table>
+<table class="min-w-full bg-white border border-gray-300">
     <thead>
         <tr>
             <th class="py-2 px-4 border-b">Date</th>
