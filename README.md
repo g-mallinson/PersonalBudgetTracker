@@ -9,3 +9,10 @@
 - FastAPI
 - Python
 
+## Tables
+
+**Transactions**
+| id | amount | description | date | category | type |
+|----|--------|-------------|------|----------|------|
+|    |        |             |      |          |      |
+
